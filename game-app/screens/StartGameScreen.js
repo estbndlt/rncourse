@@ -22,7 +22,11 @@ function StartGameScreen({ onPickNumber }) {
 
     if (isNaN(chosenNumber) || chosenNumber > 99 || chosenNumber < 1) {
       Alert.alert("Invalid number!", "Number must be between 1 and 99.", [
-        { text: "OK", style: "destructive", onPress: resetInputHandler },
+        {
+          text: "OK",
+          style: "destructive",
+          onPress: resetInputHandler,
+        },
       ]);
       return;
     }
