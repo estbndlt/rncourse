@@ -19,7 +19,8 @@ function StartGameScreen({ onPickNumber }) {
 
   /**
    * this is the preferred method since it adjusts the styles dynamically
-   * every time the component is rendered
+   * every time the component is rendered (including when the orientation
+   * changes)
    */
   const { width, height } = useWindowDimensions();
 
