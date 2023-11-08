@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import {
   Image,
   Platform,
@@ -8,19 +9,29 @@ import {
 } from 'react-native';
 
 const MealItem = ({
+  id,
   title,
   imageUrl,
   duration,
   complexity,
   affordability,
-  onPress,
 }) => {
+  const navigation = useNavigation();
+
+  const pressHandler = () => {
+    navigation.navigate('MealDetail', {
+      // this object can be whatever you like to pass between screens
+      mealId: id,
+      mealTitle: title,
+    });
+  };
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: '#ccc' }}
         style={({ pressed }) => [pressed ? styles.buttonPressed : null]}
-        onPress={onPress}
+        onPress={pressHandler}
       >
         <View style={styles.innerContainer}>
           <View>

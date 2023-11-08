@@ -20,15 +20,9 @@ const MealsOverviewScreen = ({ route, navigation }) => {
   }, []);
 
   const renderMealItem = (itemData) => {
-    const pressHandler = () => {
-      navigation.navigate('MealDetails', {
-        // this object can be whatever you like to pass between screens
-        mealId: itemData.item.id,
-      });
-    };
-
     const item = itemData.item;
     const mealItemProps = {
+      id: item.id,
       title: item.title,
       imageUrl: item.imageUrl,
       duration: item.duration,
@@ -36,7 +30,7 @@ const MealsOverviewScreen = ({ route, navigation }) => {
       affordability: item.affordability,
     };
 
-    return <MealItem {...mealItemProps} onPress={pressHandler} />;
+    return <MealItem {...mealItemProps} />;
   };
 
   return (
