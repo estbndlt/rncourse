@@ -11,6 +11,7 @@ import { MEALS } from '../data/dummy-data';
 import MealDetails from '../components/MealDetails';
 import Subtitle from '../components/MealDetail/Subtitle';
 import List from '../components/MealDetail/List';
+import IconButton from '../components/IconButton';
 
 const MealDetailScreen = ({ route, navigation }) => {
   const mealId = route.params.mealId;
@@ -24,7 +25,13 @@ const MealDetailScreen = ({ route, navigation }) => {
     navigation.setOptions({
       title: selectedMeal.title,
       headerRight: () => {
-        return <Button title="tap me" onPress={headerButtonPressHandler} />;
+        return (
+          <IconButton
+            icon={'star'}
+            color={'white'}
+            onPress={headerButtonPressHandler}
+          />
+        );
       },
     });
   }, [navigation, headerButtonPressHandler]);
