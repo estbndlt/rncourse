@@ -22,7 +22,6 @@ const MealItem = ({
     navigation.navigate('MealDetail', {
       // this object can be whatever you like to pass between screens
       mealId: id,
-      mealTitle: title,
     });
   };
 
