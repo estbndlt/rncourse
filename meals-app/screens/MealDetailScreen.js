@@ -1,6 +1,5 @@
 import { useLayoutEffect } from 'react';
 import { Text, View } from 'react-native';
-import { MEALS } from '../data/dummy-data';
 
 const MealDetailScreen = ({ route, navigation }) => {
   const mealId = route.params.mealId;
