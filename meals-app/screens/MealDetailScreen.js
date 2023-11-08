@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { MEALS } from '../data/dummy-data';
 import MealDetails from '../components/MealDetails';
 import Subtitle from '../components/MealDetail/Subtitle';
@@ -16,7 +16,7 @@ const MealDetailScreen = ({ route, navigation }) => {
   }, []);
 
   return (
-    <View>
+    <ScrollView style={styles.rootContainer}>
       <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
       <Text style={styles.title}>{selectedMeal.title}</Text>
       <MealDetails
@@ -33,13 +33,16 @@ const MealDetailScreen = ({ route, navigation }) => {
           <List data={selectedMeal.steps} />
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default MealDetailScreen;
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    marginBottom: 32,
+  },
   image: {
     width: '100%',
     height: 350,
