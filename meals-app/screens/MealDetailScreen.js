@@ -25,10 +25,14 @@ const MealDetailScreen = ({ route, navigation }) => {
         affordability={selectedMeal.affordability}
         textStyle={styles.detailText}
       />
-      <Subtitle>Ingredients</Subtitle>
-      <List data={selectedMeal.ingredients} />
-      <Subtitle>Steps</Subtitle>
-      <List data={selectedMeal.steps} />
+      <View style={styles.listOuterContainer}>
+        <View style={styles.listContainer}>
+          <Subtitle>Ingredients</Subtitle>
+          <List data={selectedMeal.ingredients} />
+          <Subtitle>Steps</Subtitle>
+          <List data={selectedMeal.steps} />
+        </View>
+      </View>
     </View>
   );
 };
@@ -49,5 +53,11 @@ const styles = StyleSheet.create({
   },
   detailText: {
     color: 'white',
+  },
+  listContainer: {
+    width: '80%',
+  },
+  listOuterContainer: {
+    alignItems: 'center',
   },
 });
