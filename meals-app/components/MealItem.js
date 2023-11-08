@@ -7,12 +7,20 @@ import {
   View,
 } from 'react-native';
 
-const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
+const MealItem = ({
+  title,
+  imageUrl,
+  duration,
+  complexity,
+  affordability,
+  onPress,
+}) => {
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: '#ccc' }}
         style={({ pressed }) => [pressed ? styles.buttonPressed : null]}
+        onPress={onPress}
       >
         <View style={styles.innerContainer}>
           <View>
