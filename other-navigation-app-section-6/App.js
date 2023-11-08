@@ -29,7 +29,15 @@ export default function App() {
             ),
           }}
         />
-        <Drawer.Screen name="User" component={UserScreen} />
+        <Drawer.Screen
+          name="User"
+          component={UserScreen}
+          options={{
+            drawerIcon: ({ color, size }) => (
+              <Ionicons name="person" size={size} color={color} />
+            ),
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
