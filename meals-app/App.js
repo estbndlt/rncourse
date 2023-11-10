@@ -1,5 +1,4 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -11,7 +10,7 @@ import MealDetailScreen from './screens/MealDetailScreen';
 import FavoritesScreen from './screens/FavoritesScreen';
 // import FavoritesContextProvider from './store/context/favorites-context';
 import { Provider } from 'react-redux';
-import { store } from './store/redux/store';
+import { store } from './store/redux/store'; // ISSUE WHEN THIS IS UNCOMMENTED
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -92,7 +91,3 @@ export default function App() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});
