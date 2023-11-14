@@ -1,4 +1,4 @@
-import { Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 const Input = ({ label, textInputConfig }) => {
   return (
@@ -10,3 +10,5 @@ const Input = ({ label, textInputConfig }) => {
 };
 
 export default Input;
+
+const styles = StyleSheet.create({});
