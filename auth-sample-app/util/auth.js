@@ -11,4 +11,6 @@ export const createUser = async (email, password) => {
       returnSecureToken: true,
     }
   );
+
+  console.log('*** rsp: ', rsp);
 };
