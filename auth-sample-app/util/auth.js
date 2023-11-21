@@ -11,13 +11,15 @@ const authenticate = async (mode, email, password) => {
     returnSecureToken: true,
   });
 
-  console.log('*** rsp: ', rsp.data);
+  const token = rsp.data.idToken;
+
+  return token;
 };
 
-export const createUser = async (email, password) => {
-  const rsp = await authenticate('signUp', email, password);
+export const createUser = (email, password) => {
+  return authenticate('signUp', email, password);
 };
 
-export const login = async (email, password) => {
-  const rsp = await authenticate('signInWithPassword', email, password);
+export const login = (email, password) => {
+  return authenticate('signInWithPassword', email, password);
 };
