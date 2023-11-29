@@ -34,7 +34,7 @@ export const insertPlace = (place) => {
   const promise = new Promise((resolve, reject) => {
     database.transaction((tx) => {
       tx.executeSql(
-        `INSERT INTO places (title, imageUri, address, lat, lng) VALUES (? ? ? ? ?)`,
+        `INSERT INTO places (title, imageUri, address, lat, lng) VALUES (?, ?, ?, ?, ?)`,
         [
           place.title,
           place.imageUri,
