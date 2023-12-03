@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Button, View } from 'react-native';
+import { StyleSheet, Button, View, Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 
 Notifications.setNotificationHandler({
@@ -36,6 +36,32 @@ const requestPermissionsAsync = async () => {
 
 export default function App() {
   useEffect(() => {
+    const configurePushNotifications = async () => {
+      //// START: CALL FUNCTIONS HERE ////
+      const hasPushNotificationPermissionGranted =
+        await allowsNotificationsAsync();
+
+      if (!hasPushNotificationPermissionGranted) {
+        await requestPermissionsAsync();
+      }
+      //// END: CALL FUNCTIONS HERE ////
+
+      const pushTokenData = await Notifications.getExpoPushTokenAsync();
+
+      console.log(pushTokenData);
+
+      if (Platform.OS === 'android') {
+        Notifications.setNotificationChannelAsync('default', {
+          name: 'default',
+          importance: Notifications.AndroidImportance.DEFAULT,
+        });
+      }
+    };
+
+    configurePushNotifications();
+  }, []);
+
+  useEffect(() => {
     const subscription1 = Notifications.addNotificationReceivedListener(
       (notification) => {
         console.log('NOTIFICATION RECEIVED');
@@ -60,7 +86,7 @@ export default function App() {
     };
   }, []);
 
-  async function scheduleNotificationHandler() {
+  const scheduleNotificationHandler = async () => {
     //// START: CALL FUNCTIONS HERE ////
     const hasPushNotificationPermissionGranted =
       await allowsNotificationsAsync();
@@ -80,13 +106,29 @@ export default function App() {
         seconds: 5,
       },
     });
-  }
+  };
+
+  const sendPushNotificationHandler = () => {
+    fetch('https://exp.host/--/api/v2/push/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: 'TODO-ADD-DEVICE-PUSH-TOKEN-HERE',
+        title: 'hello',
+        body: 'world',
+      }),
+    });
+  };
 
   return (
     <View style={styles.container}>
       <Button
         title="Schedule Notification"
         onPress={scheduleNotificationHandler}
+      />
+      <Button
+        title="Send Push Notification"
+        onPress={sendPushNotificationHandler}
       />
       <StatusBar style="auto" />
     </View>
